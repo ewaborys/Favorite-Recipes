@@ -1,12 +1,6 @@
-logging:
-  level:
-    org.springframework.security: DEBUG
-
 spring:
   data:
     mongodb:
       host: localhost
       port: 27017
       database: recipes
-      username: mongoadmin
-      password: secret

@@ -1,0 +1,181 @@
+openapi: 3.0.0
+info:
+  title: Favorite Recipes API
+  description: An API for managing favorite recipes
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080
+paths:
+  /recipes/favorite:
+    get:
+      summary: Get all recipes with filters
+      parameters:
+        - name: includeCategories
+          in: query
+          description: List of categories to include in results
+          schema:
+            type: array
+            items:
+              type: string
+        - name: excludeCategories
+          in: query
+          description: List of categories to exclude from results
+          schema:
+            type: array
+            items:
+              type: string
+        - name: numberOfServings
+          in: query
+          description: Number of servings
+          schema:
+            type: integer
+        - name: includeIngredients
+          in: query
+          description: List of ingredients to include in results
+          schema:
+            type: array
+            items:
+              type: string
+        - name: excludeIngredients
+          in: query
+          description: List of ingredients to exclude from results
+          schema:
+            type: array
+            items:
+              type: string
+        - name: instructionsContain
+          in: query
+          description: Instruction string that should be contained in the results
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A list of recipes
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Recipe'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+    post:
+      summary: Add favorite recipe
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RecipeInput'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Recipe'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+  /recipes/favorite/{recipeId}:
+    put:
+      summary: Update favorite recipe
+      parameters:
+        - name: recipeId
+          in: path
+          description: The ID of the recipe to update
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RecipeInput'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Recipe'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+    delete:
+      summary: Delete favorite recipe
+      parameters:
+        - name: recipeId
+          in: path
+          description: The ID of the recipe to delete
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+components:
+  schemas:
+    BadRequest:
+      type: object
+      properties:
+        message:
+          type: string
+          description: A message describing the reason for the bad request.
+      required:
+        - message
+    Recipe:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        category:
+          type: string
+        instructions:
+          type: string
+        ingredients:
+          type: array
+          items:
+            type: string
+        numberOfServings:
+          type: integer
+    RecipeInput:
+      type: object
+      properties:
+        name:
+          type: string
+        category:
+          type: string
+        instructions:
+          type: string
+        ingredients:
+          type: array
+          items:
+            type: string
+        numberOfServings:
+          type: integer
+      required:
+        - name
+        - category
+        - instructions
+        - ingredients
+        - numberOfServings

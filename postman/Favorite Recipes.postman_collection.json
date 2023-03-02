@@ -1,0 +1,233 @@
+{
+	"info": {
+		"_postman_id": "d519ed6e-e7fb-48be-a6e2-dd4a3b4e7e96",
+		"name": "Favorite Recipes",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Update favorite recipe",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "user",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\" : \"Salmon Eggggggggggs Benedict\",\r\n    \"category\" : \"Breakfast\",\r\n    \"instructions\" : \"First make the Hollandaise sauce. Put the lemon juice and vinegar in a small bowl, add the egg yolks and whisk with a balloon whisk until light and frothy. Place the bowl over a pan of simmering water and whisk until mixture thickens. Gradually add the butter, whisking constantly until thick – if it looks like it might be splitting, then whisk off the heat for a few mins. Season and keep warm.\\r\\n\\r\\nTo poach the eggs, bring a large pan of water to the boil and add the vinegar. Lower the heat so that the water is simmering gently. Stir the water so you have a slight whirlpool, then slide in the eggs one by one. Cook each for about 4 mins, then remove with a slotted spoon.\\r\\n\\r\\nLightly toast and butter the muffins, then put a couple of slices of salmon on each half. Top each with an egg, spoon over some Hollandaise and garnish with chopped chives.\",\r\n    \"ingredients\" : [\"Eggs\", \"White Wine Vinegar\", \"Butter\"],\r\n    \"numberOfServings\" : 3\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/recipes/favorite/640375cd267e712dc12a5d96",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"recipes",
+						"favorite",
+						"640375cd267e712dc12a5d96"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete favorite recipe",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "user",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/recipes/favorite/640375cd267e712dc12a5d96",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"recipes",
+						"favorite",
+						"640375cd267e712dc12a5d96"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add favorite recipe",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "user",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\" : \"Salmon Eggs Benedict\",\r\n    \"category\" : \"Other\",\r\n    \"instructions\" : \"First make the Hollandaise sauce. Put the lemon juice and vinegar in a small bowl, add the egg yolks and whisk with a balloon whisk until light and frothy. Place the bowl over a pan of simmering water and whisk aloha until mixture thickens. Gradually add the butter, whisking constantly until thick – if it looks like it might be splitting, then whisk off the heat for a few mins. Season and keep warm.\\r\\n\\r\\nTo poach the eggs, bring a large pan of water to the boil and add the vinegar. Lower the heat so that the water is simmering gently. Stir the water so you have a slight whirlpool, then slide in the eggs one by one. Cook each for about 4 mins, then remove with a slotted spoon.\\r\\n\\r\\nLightly toast and butter the muffins, then put a couple of slices of salmon on each half. Top each with an egg, spoon over some Hollandaise and garnish with chopped chives.\",\r\n    \"ingredients\" : [\"Bacon\", \"White Wine Vinegar\", \"Butter\"],\r\n    \"numberOfServings\" : 3\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/recipes/favorite",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"recipes",
+						"favorite"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get favorite recipes",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "user",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/recipes/favorite",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"recipes",
+						"favorite"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get favorite recipes with filter",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "user",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/recipes/favorite?includeCategories=Other",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"recipes",
+						"favorite"
+					],
+					"query": [
+						{
+							"key": "includeCategories",
+							"value": "Other"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Fetch random recipe from themealdb",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "www.themealdb.com/api/json/v1/1/random.php",
+					"host": [
+						"www",
+						"themealdb",
+						"com"
+					],
+					"path": [
+						"api",
+						"json",
+						"v1",
+						"1",
+						"random.php"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

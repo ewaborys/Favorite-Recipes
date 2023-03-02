@@ -1,25 +1,61 @@
 package com.eborys.favoriterecipes.controller;
 
+import com.eborys.favoriterecipes.contract.api.RecipesApi;
+import com.eborys.favoriterecipes.contract.model.Recipe;
+import com.eborys.favoriterecipes.contract.model.RecipeInput;
+import com.eborys.favoriterecipes.mapper.RecipeMapper;
+import com.eborys.favoriterecipes.service.RecipeService;
+import lombok.RequiredArgsConstructor;
+import org.bson.types.ObjectId;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
-public class RecipesController {
+@RequiredArgsConstructor
+public class RecipesController implements RecipesApi {
 
+    private final RecipeService recipeService;
 
-    @GetMapping("/recipes")
-    Object getRecipes() {
+    @Override
+    public ResponseEntity<List<com.eborys.favoriterecipes.contract.model.Recipe>> recipesFavoriteGet(
+            List<String> includeCategories, List<String> excludeCategories, Integer numberOfServings,
+            List<String> includeIngredients, List<String> excludeIngredients, String instructionsContain) {
+        String username = getUsername();
+        return ResponseEntity.ok(recipeService.getFavoriteRecipes(username, includeCategories, excludeCategories,
+                numberOfServings, includeIngredients, excludeIngredients, instructionsContain));
+    }
+
+    @Override
+    public ResponseEntity<com.eborys.favoriterecipes.contract.model.Recipe> recipesFavoritePost(
+            RecipeInput recipeInput) {
+        String username = getUsername();
+        Recipe recipe = RecipeMapper.INSTANCE.map(recipeInput);
+        return ResponseEntity.ok(recipeService.addFavoriteRecipe(username, recipe));
+    }
+
+    @Override
+    public ResponseEntity<Void> recipesFavoriteRecipeIdDelete(String recipeId) {
+        String username = getUsername();
+        recipeService.deleteFavoriteRecipe(username, new ObjectId(recipeId));
+        return ResponseEntity.noContent().build();
+    }
+
+    @Override
+    public ResponseEntity<com.eborys.favoriterecipes.contract.model.Recipe> recipesFavoriteRecipeIdPut(
+            String recipeId, RecipeInput recipeInput) {
+        String username = getUsername();
+        Recipe recipe = RecipeMapper.INSTANCE.map(recipeInput);
+        recipe.id(recipeId);
+        return ResponseEntity.ok(recipeService.updateFavoriteRecipe(username, recipe));
+    }
+
+    private static String getUsername() {
         var userDetails = (UserDetails) SecurityContextHolder.getContext()
                 .getAuthentication().getPrincipal();
         return userDetails.getUsername();
-    }
-
-    @GetMapping("/recipes/favorite")
-    Object getFavoriteRecipes() {
-        var userDetails = (UserDetails) SecurityContextHolder.getContext()
-                .getAuthentication().getPrincipal();
-
     }
 }

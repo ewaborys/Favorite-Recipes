@@ -8,7 +8,7 @@ servers:
 paths:
   /recipes/favorite:
     get:
-      summary: Get all recipes with filters
+      summary: Get all favorite recipes with filters
       parameters:
         - name: includeCategories
           in: query

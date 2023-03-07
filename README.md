@@ -48,3 +48,4 @@ Please keep in mind although this application was written considering it being "
 - Search is not case-insensitive as it depends on the requirements of the project, and it would make the solution more complicated
 - It was ambiguous whether the recipes should be fetchable by this service from another db or have its own db with recipes, but I decided that in postman collection there is a request to fetch a random recipe from TheMealDb (other features are paid) which user can adapt to save the recipe (that work would be mainly done by frontend which is out of scope for this exercise)
 - Once DB is installed using the method from local development setup then each user will not have any recipes, you need to add them first
+- You need docker daemon up and running for the tests to pass (testcontainers)

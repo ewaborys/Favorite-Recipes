@@ -21,7 +21,7 @@ public class RecipesController implements RecipesApi {
     private final RecipeService recipeService;
 
     @Override
-    public ResponseEntity<List<com.eborys.favoriterecipes.contract.model.Recipe>> recipesFavoriteGet(
+    public ResponseEntity<List<Recipe>> recipesFavoriteGet(
             List<String> includeCategories, List<String> excludeCategories, Integer numberOfServings,
             List<String> includeIngredients, List<String> excludeIngredients, String instructionsContain) {
         String username = getUsername();
@@ -30,7 +30,7 @@ public class RecipesController implements RecipesApi {
     }
 
     @Override
-    public ResponseEntity<com.eborys.favoriterecipes.contract.model.Recipe> recipesFavoritePost(
+    public ResponseEntity<Recipe> recipesFavoritePost(
             RecipeInput recipeInput) {
         String username = getUsername();
         Recipe recipe = RecipeMapper.INSTANCE.map(recipeInput);
@@ -45,7 +45,7 @@ public class RecipesController implements RecipesApi {
     }
 
     @Override
-    public ResponseEntity<com.eborys.favoriterecipes.contract.model.Recipe> recipesFavoriteRecipeIdPut(
+    public ResponseEntity<Recipe> recipesFavoriteRecipeIdPut(
             String recipeId, RecipeInput recipeInput) {
         String username = getUsername();
         Recipe recipe = RecipeMapper.INSTANCE.map(recipeInput);

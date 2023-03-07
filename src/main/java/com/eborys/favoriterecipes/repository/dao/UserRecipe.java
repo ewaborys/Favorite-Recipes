@@ -19,6 +19,7 @@ public class UserRecipe {
     @Id
     private ObjectId id;
 
+    @NotEmpty
     private String name;
 
     @NotEmpty
